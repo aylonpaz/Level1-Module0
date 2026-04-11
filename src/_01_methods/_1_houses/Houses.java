@@ -14,15 +14,26 @@ public class Houses {
 			int r;
 			int g;
 			int b;
-
+			
 	public void run() {
 		rob = new Robot();
 		rob.setX(5);
 		rob.setY(450);
 		rob.setSpeed(100);
 		rob.penDown();
-		small();
-		medium();
+		for(int i = 0; i< 9; i +=1) {
+			Random r = new Random();
+			int result = r.nextInt(3);
+			if(result == 1) {
+				small();
+			}
+			else if(result == 0) {
+				medium();
+			}
+			else if(result == 2) {
+				quiteLargeInnit();
+			}
+		}
 		// Check the recipe to find out what code to put here
 	
 }
@@ -32,6 +43,20 @@ public class Houses {
 	g = ran.nextInt(256);
 	b = ran.nextInt(256);
 	rob.setPenColor(r, g, b);
+	}
+	public void quiteLargeInnit() {
+		RandomColor();
+		rob.turn(90);
+		rob.move(20);
+		rob.turn(-90);
+		rob.move(250);
+		rob.turn(45);
+		rob.move(50);
+		rob.turn(90);
+		rob.move(50);
+		rob.turn(45);
+		rob.move(250);
+		rob.turn(-180);
 	}
 	public void small() {
 		RandomColor();
@@ -48,7 +73,7 @@ public class Houses {
 		rob.turn(180);
 	}
 	public void medium() {
-		
+		RandomColor();
 		rob.turn(90);
 		rob.move(20);
 		rob.turn(-90);
