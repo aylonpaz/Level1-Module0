@@ -40,10 +40,11 @@ public class SpinningRecord extends PApplet {
     static final int HEIGHT = 600;
     PImage pictureOfRecord;
     
-    Song song = new Song("awesomeTrack.mp3");
+    Song song = new Song("_01_methods/_2_spinning_record/Crawling Song.mp3");
     @Override
     public void settings() {
         size(WIDTH, HEIGHT);
+        background(227, 34, 192);
     }
 
     @Override
@@ -57,9 +58,12 @@ public class SpinningRecord extends PApplet {
     @Override
     public void draw() {
     	if(mousePressed) {
+    	song.play();
         rotateImage(pictureOfRecord, i);
         image(pictureOfRecord, 0, 0);
         i +=3;
+    	}else {
+    		song.stop();
     	}
     }
 
