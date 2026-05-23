@@ -75,11 +75,11 @@ public class RainGame extends PApplet {
     ellipse(x, raindropY, 30, 30);
     fill(128, 128, 128);
     rect(mouseX, 540, bucketWidth, 60);
-    raindropY += 10;
-    if(raindropY >= 610) {
-    	raindropY = 40;
-    	x = raindropX.nextInt(601);
+    raindropY += 5;
+    if(raindropY >= 590) {
         checkCatch(x);
+    	raindropY = 40;
+    	x = raindropX.nextInt(550);
        }
     }
 

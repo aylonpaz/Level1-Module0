@@ -1,5 +1,7 @@
 package _01_methods._4_magic_worms;
 
+import java.util.Random;
+
 import processing.core.PApplet;
 
 /*
@@ -29,27 +31,33 @@ import processing.core.PApplet;
  *    EXTRA: Pass in frameCount or another variable for the ellipse
  *    "red value", and i as the "green value" for some extra color coolness.
  */
-public class MagicWorms extends PApplet {
+public class mySTARRRRSSSS extends PApplet {
     static final int WIDTH = 600;
     static final int HEIGHT = 400;
+    Random worm;
 
     @Override
     public void settings() {
         size(WIDTH, HEIGHT);
+        
     }
 
     @Override
     public void setup() {
-
+    	background(0, 0, 0);
+    	worm = new Random();
     }
 
     @Override
     public void draw() {
-
-    }
+    	int wormX2 = worm.nextInt(600);
+    	int wormY2 =worm.nextInt(400);
+    	ellipse(wormX2, wormY2, 3, 3);
+    		
+    	}
 
     static public void main(String[] args) {
-        PApplet.main(MagicWorms.class.getName());
+        PApplet.main(mySTARRRRSSSS.class.getName());
     }
 
     /*********************** DO NOT MODIFY THE CODE BELOW ********************/
