@@ -2,6 +2,8 @@ package _01_methods._3_rain_game;
 
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -81,6 +83,7 @@ public class RainGame extends PApplet {
     	raindropY = 40;
     	x = raindropX.nextInt(550);
        }
+    
     }
 
     static public void main(String[] args) {
@@ -92,8 +95,9 @@ public class RainGame extends PApplet {
     void checkCatch(int x) {
         if (x > mouseX && x < mouseX + bucketWidth) {
             score++;
-        } else if (score > 0) {
-            score--;
+        } else {
+            JOptionPane.showMessageDialog(null, "You lost.");
+            exit();
         }
         println("Your score is now: " + score);
     }
