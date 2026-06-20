@@ -17,20 +17,27 @@ public class FlappyBird extends PApplet {
     int gravity = 1;
     PImage topPipe;
     PImage bottomPipe;
+    PImage background;
+    PImage birdSprite;
     int pipeX = 750;
     int topPipeSize = (int) random(100, 400);
-    int pipeGap = 100;
+    int pipeGap = 150;
     int bottomPipeLeftCorner;
+    int score = 0;
     
     @Override
     public void settings() {
         size(WIDTH, HEIGHT);
-       
+
     }
 
     @Override
     public void setup() {
         frameRate(60);
+        birdSprite = loadImage("src/_01_methods/_5_FlappyBird/bird.png");
+        birdSprite.resize(35,30);
+        background = loadImage("src/_01_methods/_5_FlappyBird/flappyBackground.jpg");
+        background.resize(WIDTH, HEIGHT);
         topPipe = loadImage("src/_01_methods/_5_FlappyBird/topPipe.png");
         topPipe.resize(50, topPipeSize);
         bottomPipe = loadImage("src/_01_methods/_5_FlappyBird/bottomPipe.png");
@@ -39,30 +46,39 @@ public class FlappyBird extends PApplet {
 
     @Override
     public void draw() {
-    	
-    	 background(40,200,40);
+        background(background);
      fill(200, 40, 10);
      stroke(0,0,0);
-     ellipse(birdX,birdY,30,30);
+     image(birdSprite,birdX,birdY);
      image(topPipe,pipeX, 0);
      image(bottomPipe,pipeX, bottomPipeLeftCorner);
     // if(framesDrawn %2 == 0) {
      birdY += birdVelocity;
      birdVelocity += gravity;
-     pipeX -= 1;
+     pipeX -= 2;
      if(mousePressed || keyPressed) {
-    	 birdVelocity = -10;
+    	 birdVelocity = -12;
      }
-     if(birdY >= height + 50 || birdY <= -50) {
+   if(birdY >= height + 50 || birdY <= -50) {
     	 JOptionPane.showMessageDialog(null, "You lost!");
     	 exit();
-     }
+   }
      if(pipeX <= -50) {
     	 pipeX = 750;
     	 topPipeSize = (int) random(100, 400);
     	 topPipe.resize(50, topPipeSize);
     	 bottomPipe.resize(50, 600 - (topPipeSize + pipeGap));
+    	 bottomPipeLeftCorner = topPipeSize + pipeGap;
      }
+     if(intersectsPipes()) {
+    	 JOptionPane.showMessageDialog(null, "You lose!");
+    	 exit();
+     }
+     if(birdX == pipeX + 50) {
+    	 score +=1;
+     }
+     textSize(50);
+     text(score, 0, 50);
     // }
     // framesDrawn +=1;
     }
@@ -80,7 +96,9 @@ public class FlappyBird extends PApplet {
     	super.keyReleased();
     	 birdVelocity = -10;
     }
-
+    public boolean intersectsPipes() {
+    	if(birdX >= pipeX && birdX <= pipeX + 50 && !(birdY >= topPipeSize && birdY <= bottomPipeLeftCorner)) {return true;} else {return false;}
+    }
     static public void main(String[] args) {
         PApplet.main(FlappyBird.class.getName());
     }
