@@ -10,7 +10,7 @@ import processing.core.PImage;
 public class FlappyBird extends PApplet {
     static final int WIDTH = 800;
     static final int HEIGHT = 600;
-    int birdX = 150;
+    int birdX = 152;
     int birdY = 300;
     int birdVelocity = -10;
     int framesDrawn = 0;
@@ -21,7 +21,7 @@ public class FlappyBird extends PApplet {
     PImage birdSprite;
     int pipeX = 750;
     int topPipeSize = (int) random(100, 400);
-    int pipeGap = 150;
+    int pipeGap = 175;
     int bottomPipeLeftCorner;
     int score = 0;
     
@@ -49,15 +49,13 @@ public class FlappyBird extends PApplet {
         background(background);
      fill(200, 40, 10);
      stroke(0,0,0);
-     image(birdSprite,birdX,birdY);
-     image(topPipe,pipeX, 0);
-     image(bottomPipe,pipeX, bottomPipeLeftCorner);
+    
     // if(framesDrawn %2 == 0) {
      birdY += birdVelocity;
      birdVelocity += gravity;
-     pipeX -= 2;
+     pipeX -= 8;
      if(mousePressed || keyPressed) {
-    	 birdVelocity = -12;
+    	 birdVelocity = -11;
      }
    if(birdY >= height + 50 || birdY <= -50) {
     	 JOptionPane.showMessageDialog(null, "You lost!");
@@ -80,7 +78,10 @@ public class FlappyBird extends PApplet {
      textSize(50);
      text(score, 0, 50);
     // }
-    // framesDrawn +=1;
+    // framesDrawn +=1; 
+     image(birdSprite,birdX,birdY);
+     image(topPipe,pipeX, 0);
+     image(bottomPipe,pipeX, bottomPipeLeftCorner);
     }
     
     @Override
